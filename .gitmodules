@@ -1,0 +1,3 @@
+[submodule "modelica/Modelica_Requirements"]
+	path = modelica/Modelica_Requirements
+	url = https://github.com/mwetter/Modelica_Requirements
