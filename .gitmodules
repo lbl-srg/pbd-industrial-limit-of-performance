@@ -1,6 +1,6 @@
 [submodule "modelica/Modelica_Requirements"]
 	path = modelica/Modelica_Requirements
-	url = https://github.com/mwetter/Modelica_Requirements
+	url = https://github.com/modelica-3rdparty/Modelica_Requirements
 [submodule "modelica/Buildings"]
 	path = modelica/Buildings
 	url = https://github.com/lbl-srg/modelica-buildings
