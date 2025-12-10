@@ -10,6 +10,7 @@ The directory structure is as follows:
   - Buildings: Git submodule pointing to the Buildings library
   - IndustrialPilot: Models for the industrial pilot simulation
   - Modelica_Requirements: Git submodule pointing to the Modelica_Requirements library
+- controllers: Contains the optimal control models
 ```
 
 To simulate a Modelica model with Dymola on Linux, use
