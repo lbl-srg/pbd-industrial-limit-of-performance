@@ -10,7 +10,11 @@ The directory structure is as follows:
   - Buildings: Git submodule pointing to the Buildings library
   - IndustrialPilot: Models for the industrial pilot simulation
   - Modelica_Requirements: Git submodule pointing to the Modelica_Requirements library
-- controllers: Contains the optimal control models
+- controllers: Contains the black-box optimal control models
+  - HighResolution: The high-resolution optimal control code (denoted as HR in the paper.)
+  - MultiResolution: The multi-resolution optimal control code (denoted as MR in the paper.)
+  - MultiResolutionML: The multi-resolution with machine learning optimal control code (denoted as ML-MR in the paper.)
+
 ```
 
 To simulate a Modelica model with Dymola on Linux, use
