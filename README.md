@@ -30,4 +30,4 @@ The top-level models are in the package `IndustrialPilot.Examples`.
 # Controllers
 
 The controllers folder contains all of the controllers implemented in the paper.
-Each controller is packaged with the Dymola FMU evalautator (**fmu_edit.fmu**), and the JADE optimizer implemented in Python (**_JADE.py**).
+Each controller is packaged with the Dymola FMU evalautator (**data/fmu_edit.fmu**), and the JADE optimizer implemented in Python (**_JADE.py**).
