@@ -50,6 +50,6 @@ cd MultiResolutionML-GB
 apptainer exec --bind .:/app docker://python:3.11-bookworm /app/run_test.sh
 ```
 
-The **run_test.sh** script contains the specifications regarding the controller execution.
+The **run_test.sh** script contains the specifications regarding the controller execution (including dependency installation).
 
 ***
