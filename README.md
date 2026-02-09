@@ -31,3 +31,19 @@ The top-level models are in the package `IndustrialPilot.Examples`.
 
 The controllers folder contains all of the controllers implemented in the paper.
 Each controller is packaged with the Dymola FMU evalautator (**data/fmu_edit.fmu**), and the JADE optimizer implemented in Python (**_JADE.py**).
+The full code implementation (with all hyperparameters as outlined in the paper) for all multi-resolution controllers can be found in the **multires.py** file, while the high-resolution controller is found in **highres.py**.
+The requirements.txt file contains all of the Python requirements needed to run the controllers.
+
+Running the controller is possible by navigating into the controller folder (e.g. MultiResolutionML-GB) and running the Python code:
+```bash
+cd MultiResolutionML-GB
+python multires.py
+```
+
+To exactly replicate the environemtnt used in the paper, it is also possible to run the controllers using Apptainer (version 1.4.2-1.el8):
+
+```bash
+cd MultiResolutionML-GB
+apptainer exec --bind .:/app docker://python:3.11-bookworm /app/run_test.sh
+```
+where **run_test.sh** contains the specifications regardin the controller code.
