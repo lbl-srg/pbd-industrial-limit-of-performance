@@ -13,8 +13,9 @@ The directory structure is as follows:
 - controllers: Contains the black-box optimal control models
   - HighResolution: The high-resolution optimal control code (denoted as HR in the paper)
   - MultiResolution: The multi-resolution optimal control code (denoted as MR in the paper)
-  - MultiResolutionML: The multi-resolution with machine learning optimal control code (denoted as ML-MR in the paper)
-
+  - MultiResolutionML-RF1: The multi-resolution with Random Forests (hard coded $\kappa=1$) optimal control code
+  - MultiResolutionML-RF2: The multi-resolution with Random Forests (hard coded $\kappa=2$) optimal control code
+  - MultiResolutionML-GB: The multi-resolution with Gradient Boosting optimal control code
 ```
 
 To simulate a Modelica model with Dymola on Linux, use
