@@ -53,3 +53,13 @@ apptainer exec --bind .:/app docker://python:3.11-bookworm /app/run_test.sh
 The **run_test.sh** script contains the specifications regarding the controller execution (including dependency installation).
 
 ***
+
+# IDAES
+
+The IDAES folder contains the unit models and flowsheets for the multi-objective architectural optimization problem presented in the in the paper. To run the idaes model for the pilot, from inside the IDAES directory, run
+
+```
+``python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints`` . 
+```
+
+***
