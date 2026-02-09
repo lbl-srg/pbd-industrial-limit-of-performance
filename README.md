@@ -13,8 +13,8 @@ The directory structure is as follows:
 - controllers: Contains the black-box optimal control models
   - HighResolution: The high-resolution controller
   - MultiResolution: The multi-resolution controller
-  - MultiResolutionML-RF1: The multi-resolution with Random Forests (hard coded $$\kappa=1$$) controller
-  - MultiResolutionML-RF2: The multi-resolution with Random Forests (hard coded $$\kappa=2$$) controller
+  - MultiResolutionML-RF1: The multi-resolution with Random Forests (&kappa; = 1) controller
+  - MultiResolutionML-RF2: The multi-resolution with Random Forests (&kappa; = 2) controller
   - MultiResolutionML-GB: The multi-resolution with Gradient Boosting controller
 ```
 
@@ -30,3 +30,4 @@ The top-level models are in the package `IndustrialPilot.Examples`.
 # Controllers
 
 The controllers folder contains all of the controllers implemented in the paper.
+Each controller is packaged with the Dymola FMU evalautator (**fmu_edit.fmu**), and the JADE optimizer implemented in Python (**_JADE.py**).
