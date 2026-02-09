@@ -13,8 +13,8 @@ The directory structure is as follows:
 - controllers: Contains the black-box optimal control models
   - HighResolution: The high-resolution controller
   - MultiResolution: The multi-resolution controller
-  - MultiResolutionML-RF1: The multi-resolution with Random Forests (&kappa; = 1) controller
-  - MultiResolutionML-RF2: The multi-resolution with Random Forests (&kappa; = 2) controller
+  - MultiResolutionML-RF1: The multi-resolution with Random Forests (κ=1) controller
+  - MultiResolutionML-RF2: The multi-resolution with Random Forests (κ=2) controller
   - MultiResolutionML-GB: The multi-resolution with Gradient Boosting controller
 ```
 
