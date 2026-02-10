@@ -62,7 +62,7 @@ The IDAES folder contains the unit models and flowsheets for the multi-objective
 ``python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints`` . 
 ```
 
-Due to the size of the optimization problem, running the IDAES model for the full year takes a few days. However, the model can be tested/run for a shorter time interval by passing in the --days flag. For example, to optimize over the first 7 days of the year, run
+Due to the size of the optimization problem, running the IDAES model for the full year takes a few days. However, the model can be tested/run for a shorter time interval by passing in the ``--days`` flag. For example, to optimize over the first 7 days of the year, run
 
 ```
 ``python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints --days 7`` . 
