@@ -49,7 +49,7 @@ python multires.py
 ```
 
 ### Running with Apptainer (Reproducibility)
-To exactly replicate the environment used in the paper, you can run the controllers using Apptainer (tested with version 1.4.2):
+To exactly replicate the environment used in the paper, run the controllers using Apptainer (tested with version 1.4.2):
 
 ```bash
 cd MultiResolutionML-GB
