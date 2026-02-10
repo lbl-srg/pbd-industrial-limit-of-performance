@@ -17,7 +17,7 @@ The directory structure is as follows:
   - MultiResolutionML-RF2: The multi-resolution with Random Forests (κ=2) controller
   - MultiResolutionML-GB: The multi-resolution with Gradient Boosting controller
 - IDAES: Contains the models for the architectural optimization problem
-  -idaes_models.
+  -idaes_models/
     - data: Data on annual electricity cost and solar profiles used for architectural optimization.
     - models: Python scripts containing the unit models, cost models and full IDAES flowsheet.
 ```
