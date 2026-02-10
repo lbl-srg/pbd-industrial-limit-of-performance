@@ -1,0 +1,108 @@
+[build-system]
+requires = [
+    "setuptools >= 64",
+#    "setuptools_scm >= 8",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "idaes-models"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["IDAES", "energy systems", "chemical engineering", "process modeling"]
+dynamic = ["version"]
+dependencies = [
+    "pyomo >= 6.7.0",
+    "ipython >= 8.3.0",
+    "idaes-pse >= 2.7.0",
+    "watertap >= 1.2.0",
+    "pandas >= 2.2.3",
+    "idaes_connectivity@git+https://github.com/prommis/idaes-connectivity",
+]
+# [project.scripts]
+
+[tool.setuptools]
+packages = ["idaes_models"]
+
+[tool.setuptools.dynamic]
+version = {attr = "idaes_models.__version__"}
+
+[tool.pylint.main]
+py-version = "3.9"
+
+[project.scripts]
+idaes-fullday = "idaes_models.models.full_day_case.flowsheets.heating_flowsheet_rework_copy:main"
+idaes-stepload = "idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints:main"
+
+[tool.pylint."messages conuse_scm_version={'root'trol"]
+disable = [
+    "E", # all errors
+    "W", # all warnings
+    "C", # all conventions
+    "R", # all refactor
+]
+# see https://pylint.readthedocs.io/en/v2.17.7/user_guide/messages/index.html
+# for a list of all messages
+enable = [
+    "import-error",
+    "unused-import",
+    "wildcard-import",
+    "wrong-import-order",
+    "wrong-import-position",
+    "ungrouped-imports",
+    "implicit-str-concat",
+    "dangerous-default-value",
+    "invalid-name",
+]
+module-naming-style = "snake_case"
+const-naming-style = "any"
+class-naming-style = "any"
+function-naming-style = "any"
+method-naming-style = "any"
+attr-naming-style = "any"
+argument-naming-style = "any"
+variable-naming-style = "any"
+class-attribute-naming-style = "any"
+inlinevar-naming-style = "any"
+
+[tool.pytest.ini_options]
+addopts = """
+--pyargs idaes_connectivity
+--import-mode=importlib
+-rsx
+"""
+
+[tool.typos.files]
+extend-exclude = [
+    "*.svg",
+    "*.json",
+]
+
+[tool.typos.default.extend-words]
+# Ignore IDAES
+IDAES = "IDAES"
+# Atomic elements
+Nd = "Nd"
+[tool.typos.default]
+extend-ignore-re = [
+    # Jupyter notebooks: ignore hexadecimal values in "id" cell metadata field
+    '"id": "[0-9a-f]+",'
+]
