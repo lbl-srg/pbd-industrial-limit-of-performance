@@ -18,6 +18,8 @@ The directory structure is as follows:
   - MultiResolutionML-GB: The multi-resolution with Gradient Boosting controller
 ```
 
+# Modelica
+
 To simulate a Modelica model with Dymola on Linux, use
 ```bash
 $ cd modelica/
@@ -59,13 +61,13 @@ The **run_test.sh** script contains the specifications regarding the controller 
 The IDAES folder contains the unit models and flowsheets for the multi-objective architectural optimization problem presented in the in the paper. To run the idaes model for the pilot, from inside the IDAES directory, run
 
 ```
-``python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints`` . 
+python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints 
 ```
 
 Due to the size of the optimization problem, running the IDAES model for the full year takes a few days. However, the model can be tested/run for a shorter time interval by passing in the ``--days`` flag. For example, to optimize over the first 7 days of the year, run
 
 ```
-``python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints --days 7`` . 
+python -m idaes_models.models.stepload_case.flowsheets.heating_flowsheet_stepload_additional_constraints --days 7
 ```
 
 Instructions for installing the IDAES model are in the IDAES folder README.
