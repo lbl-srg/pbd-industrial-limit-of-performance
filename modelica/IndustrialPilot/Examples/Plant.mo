@@ -6,6 +6,8 @@ model Plant
       ETan(displayUnit="Wh") = 6.9053292e9,
       EBat=4.04928e9,
       surPv=1706.85));
+  parameter Boolean useBoi=false
+    "Set to true to enable boiler in model, or to false to permanently disable it";
   Modelica.Blocks.Math.BooleanToReal switch_pumCon(realTrue=dat.QCon_flow_nominal
         /4184/dTLoa)
     "Switch to activate the pump associated to the condenser of the heat pump"
@@ -20,14 +22,14 @@ model Plant
         displayUnit="min") = 1800, falseHoldDuration(displayUnit="min") = 600)
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={290,-70})));
+        rotation=0,
+        origin={290,-28})));
   Buildings.Controls.OBC.CDL.Logical.TrueFalseHold holdBoi(trueHoldDuration(
         displayUnit="min") = 900, falseHoldDuration(displayUnit="min") = 0)
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={250,-70})));
+        rotation=0,
+        origin={292,-72})));
   Modelica.Blocks.Sources.CombiTimeTable charge(
     tableOnFile=true,
     tableName="tab1",
@@ -49,6 +51,13 @@ model Plant
     annotation (Placement(transformation(extent={{-400,200},{-380,220}})));
   Modelica.Blocks.Sources.Constant P_charge(k=400000)
     annotation (Placement(transformation(extent={{-460,220},{-440,240}})));
+  Buildings.Controls.OBC.CDL.Logical.Sources.Constant boiEna(final k=useBoi)
+    "Set to true to enable a boiler, or to false to remove the boiler permanently"
+    annotation (Placement(transformation(extent={{280,-120},{300,-100}})));
+  Buildings.Controls.OBC.CDL.Logical.And boiDis
+    "Boolean and to enable or disable boiler"
+    annotation (Placement(transformation(extent={{340,-80},{360,-60}})));
+
 equation
 
 
@@ -60,12 +69,9 @@ equation
     Line(points={{-490,78},{-490,50},{-481.7,50}},        color = {0, 0, 127}));
   connect(switch_pumCon.y, pumCon.m_flow_in) annotation(
     Line(points={{-359,-210},{-342,-210}},      color = {0, 0, 127}));
-  connect(holdHeaPum.y, switch_pumCon.u) annotation (Line(points={{290,-82},{
-          290,-410},{-450,-410},{-450,-210},{-382,-210}}, color={255,0,255}));
-  connect(holdBoi.y, switch_pumBoi.u) annotation (Line(points={{250,-82},{250,
-          -370},{-200,-370},{-200,-210},{-162,-210}}, color={255,0,255}));
-  connect(holdBoi.y, Boiler_on.u) annotation (Line(points={{250,-82},{250,-370},
-          {-200,-370},{-200,-290},{-162,-290}}, color={255,0,255}));
+  connect(holdHeaPum.y, switch_pumCon.u) annotation (Line(points={{302,-28},{400,
+          -28},{400,-410},{-450,-410},{-450,-210},{-382,-210}},
+                                                          color={255,0,255}));
   connect(charge.y[2], booHeaPum.u)
     annotation (Line(points={{-479,310},{-470,310},{-470,330},{-442,330}},
                                                      color={0,0,127}));
@@ -75,10 +81,11 @@ equation
           {-470,310},{-470,270},{-462,270}}, color={0,0,127}));
   connect(charge.y[3], booBoi.u) annotation (Line(points={{-479,310},{-470,310},
           {-470,370},{-442,370}}, color={0,0,127}));
-  connect(onoff_tank.yHeaPum, holdHeaPum.u) annotation (Line(points={{201,-27},
-          {290,-27},{290,-58}}, color={255,0,255}));
-  connect(onoff_tank.yBoi, holdBoi.u) annotation (Line(points={{201,-33},{250,
-          -33},{250,-58}}, color={255,0,255}));
+  connect(onoff_tank.yHeaPum, holdHeaPum.u) annotation (Line(points={{201,-27},{
+          278,-27},{278,-28}},  color={255,0,255}));
+  connect(onoff_tank.yBoi, holdBoi.u) annotation (Line(points={{201,-33},{260,-33},
+          {260,-72},{280,-72}},
+                           color={255,0,255}));
   connect(TTanBot.T, onoff_tank.T_bottom) annotation (Line(points={{81,-30},{
           150,-30},{150,-22},{178,-22}}, color={0,0,127}));
   connect(booHeaPum.y, onoff_tank.ChaHeaPum) annotation (Line(points={{-419,330},
@@ -105,6 +112,14 @@ equation
   connect(bat.SOC, charge_discharge_soc.soc) annotation (Line(points={{-319,176},
           {-312,176},{-312,228},{-406,228},{-406,219},{-402,219}}, color={0,0,
           127}));
+  connect(holdBoi.y, boiDis.u1) annotation (Line(points={{304,-72},{320,-72},{320,
+          -70},{338,-70}}, color={255,0,255}));
+  connect(boiDis.y, Boiler_on.u) annotation (Line(points={{362,-70},{380,-70},{380,
+          -370},{-200,-370},{-200,-290},{-162,-290}}, color={255,0,255}));
+  connect(boiEna.y, boiDis.u2) annotation (Line(points={{302,-110},{320,-110},{320,
+          -78},{338,-78}}, color={255,0,255}));
+  connect(switch_pumBoi.u, boiDis.y) annotation (Line(points={{-162,-210},{-200,
+          -210},{-200,-370},{380,-370},{380,-70},{362,-70}}, color={255,0,255}));
   annotation (experiment(
       StopTime=31536000,
       Interval=600,
@@ -113,5 +128,7 @@ equation
 <p>Extends <a href=\"modelica://IndustrialPilot.BaseClasses.Plant_generic\">IndustrialPilot.BaseClasses.Plant_generic</a></p>
 <p>Model with basic controls: the heat pump and the boiler are on and the water storage is discharging when there is heating demand from the secondary side. </p>
 <p>The heat pump or the boiler are on also when there is no demand from the secondary side to charge the water storage, reading the input from <i>charge</i>, that sends a signal either to the heat pump of the boiler and for the state of charge of the battery</p>
-</html>"));
+</html>"),
+    Diagram(coordinateSystem(extent={{-520,-420},{520,400}})),
+    Icon(coordinateSystem(extent={{-100,-100},{100,100}})));
 end Plant;
